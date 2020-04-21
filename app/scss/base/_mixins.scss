@@ -1,0 +1,111 @@
+// breakpoints
+$mobile: 768px - 1px; // mobile 640px and less
+$tablet: 1023px; // tablet 1024px {$desktop-xs + 1} and less
+$desktop: 1142px - 1px; // tablet 1280px {$desktop-large + 1} and less
+$desktop-lg: 1920px - 1px; // tablet 1920px {$desktop-large + 1} and less
+
+// vertical align el inside parent with fixed height/min-height
+// usage 
+// html - .parent>.child
+// scss - @include v-align;
+//     or @include v-align(250px);
+//     or @include v-align(250px, bottom, before);
+//
+@mixin v-align($va-height: 100%, $va-direction: middle, $va-pseudo: after) {
+  white-space: nowrap;
+  text-align: center;
+
+  &:#{$va-pseudo} {
+    content: '';
+    display: inline-block;
+    vertical-align: $va-direction;
+    width: 0;
+    min-height: $va-height;
+  }
+
+  > * {
+    white-space: normal;
+    display: inline-block;
+    vertical-align: $va-direction;
+    max-width: 99%;
+  }
+}
+
+// breakpoints mixin
+// @include breakpoint($mobile) {}
+@mixin breakpoint($rule){
+  @media only screen and (max-width: #{$rule}){
+    @content;
+  }
+}
+
+// breakpoints mixin
+// @include breakpoint($mobile) {}
+@mixin breakpoint-mobile-first($rule){
+  @media only screen and (min-width: #{$rule}){
+    @content;
+  }
+}
+
+// vertical align el
+// usage: @include vertical-align-el;
+//
+@mixin vertical-align-el {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin hide-text {
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+/// Mixin for styling form-placeholders
+/// @example scss - Usage
+///   @include placeholder {
+///    color: #333;
+///   }
+///
+///   input[type='text'],
+///   input[type='tel'],
+///   input[type='email'] {
+///     @include placeholder {
+///      color: red;
+///     }
+///   }
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    opacity: 1;
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+
+  &.placeholder {
+    @content;
+  }
+}
+
+//font-face
+@mixin font-face($font-name, $font-path, $weight, $style) {
+  @font-face {
+    font-family: '#{$font-name}';
+    src: url('fonts/#{$font-path}.woff2') format('woff'),
+         url('fonts/#{$font-path}.woff') format('woff');
+    font-weight: $weight;
+    font-style: $style;
+  }
+}

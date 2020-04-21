@@ -1,0 +1,50 @@
+@import "../base/variables";
+
+.btn {
+  background: $jungle-green;
+  color: $btn-color !important;
+  border: $btn-border;
+  padding: $btn-padding;
+  font-size: $font-size-base;
+  text-transform: uppercase;
+  line-height: 22px;
+  height: auto;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+
+  &:hover {
+    text-decoration: none;
+    opacity: 0.8;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.btn-success {
+    border-radius: 4px;
+    background-color: $jungle-green;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.17);
+    border: 2px solid $jungle-green;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    line-height: 20px;
+  }
+
+  &.btn-block {
+    display: block;
+    width: 100%;
+  }
+
+  &.btn-primary {
+    background: $blue;
+    border: 1px solid $blue;
+  }
+
+  &.btn-min {
+    min-width: 154px;
+  }
+}
